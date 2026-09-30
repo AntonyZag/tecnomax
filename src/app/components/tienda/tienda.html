@@ -1,0 +1,243 @@
+<!-- Barra de Navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">
+      <i class="bi bi-cpu-fill text-primary me-2"></i>TecnoMax
+    </a>
+    <div class="collapse navbar-collapse show">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="#categorias">Categorías</a></li>
+        <li class="nav-item"><a class="nav-link" href="#destacados">Destacados</a></li>
+        <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ofertas">Ofertas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resenas">Reseñas</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Encabezado Principal / Hero -->
+<header class="bg-primary text-white text-center py-5 shadow-sm">
+  <div class="container">
+    <h1 class="display-4 fw-bold">TecnoMax Perú</h1>
+    <p class="lead">Líderes en tecnología, innovación y los mejores dispositivos electrónicos del mercado.</p>
+  </div>
+</header>
+
+<main class="container my-5">
+  <!-- Sección: Información de la Tienda -->
+  <section id="nosotros" class="mb-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
+        <h2 class="card-title text-center text-primary mb-4 fw-bold">
+          <i class="bi bi-building me-2"></i>Sobre Nuestra Empresa
+        </h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h5 class="fw-bold"><i class="bi bi-clock-history text-secondary me-2"></i>Historia</h5>
+            <p class="text-muted">Iniciamos operaciones para acercar tecnología de alto nivel a precios justos, respaldados por marcas mundiales y garantía oficial.</p>
+          </div>
+          <div class="col-md-4">
+            <h5 class="fw-bold"><i class="bi bi-compass text-secondary me-2"></i>Misión</h5>
+            <p class="text-muted">Brindar equipamiento electrónico moderno y eficiente a hogares y empresas, garantizando soporte técnico y asesoría experta.</p>
+          </div>
+          <div class="col-md-4">
+            <h5 class="fw-bold"><i class="bi bi-eye text-secondary me-2"></i>Visión</h5>
+            <p class="text-muted">Convertirnos en el distribuidor tecnológico de referencia nacional para el 2030, reconocidos por innovación y servicio de postventa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Categorías Principales con Hover -->
+  <section id="categorias" class="mb-5">
+    <h2 class="text-center mb-4 fw-bold"><i class="bi bi-grid-fill text-primary me-2"></i>Categorías</h2>
+    <div class="row g-3">
+      @for (cat of categorias; track $index) {
+        <div class="col-6 col-md-3">
+          <div class="card text-center border-0 shadow-sm p-3 bg-white h-100 card-hover">
+            <div class="card-body">
+              <i class="bi bi-tags-fill text-primary fs-2 mb-2"></i>
+              <h6 class="fw-bold m-0">{{ cat }}</h6>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Sección: Productos Destacados (Carrusel Bootstrap) -->
+  <section id="destacados" class="mb-5">
+    <h2 class="text-center mb-4 fw-bold"><i class="bi bi-star-fill text-warning me-2"></i>Productos Destacados</h2>
+    
+    <div id="carruselProductos" class="carousel slide px-md-5" data-bs-ride="carousel">
+      <div class="carousel-indicators mb-n4">
+        @for (prod of destacados; track $index) {
+          <button type="button" data-bs-target="#carruselProductos" [attr.data-bs-slide-to]="$index" [class.active]="$first" aria-current="true"></button>
+        }
+      </div>
+
+      <div class="carousel-inner pb-4">
+        @for (prod of destacados; track $index) {
+          <div class="carousel-item" [class.active]="$first">
+            <div class="card border-0 shadow-sm mx-auto card-hover overflow-hidden" style="max-width: 650px;">
+              <div class="row g-0 align-items-center">
+                <div class="col-md-6 overflow-hidden">
+                  <img [src]="prod.imagen" class="img-fluid rounded-start product-img" [alt]="prod.nombre" style="height: 280px; width: 100%; object-fit: cover;">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body p-4 d-flex flex-column">
+                    <span class="badge bg-secondary mb-2 align-self-start">{{ prod.categoria }}</span>
+                    <h5 class="card-title fw-bold text-dark">{{ prod.nombre }}</h5>
+                    <p class="card-text text-muted small">Producto destacado del mes con garantía oficial TecnoMax.</p>
+                    <p class="text-primary fw-bold fs-4 mb-3">S/ {{ prod.precio }}</p>
+                    <button class="btn btn-primary btn-sm align-self-start">
+                      <i class="bi bi-cart-plus me-1"></i> Comprar ahora
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carruselProductos" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carruselProductos" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Sección: Catálogo de Productos (Tarjetas con Hover) -->
+  <section id="productos" class="mb-5">
+    <h2 class="text-center mb-4 fw-bold"><i class="bi bi-laptop text-primary me-2"></i>Catálogo de Productos</h2>
+    <div class="row g-4">
+      @for (prod of productos; track $index) {
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm border-0 card-hover overflow-hidden">
+            <img [src]="prod.imagen" class="card-img-top product-img" [alt]="prod.nombre" style="height: 200px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+              <span class="badge bg-secondary mb-2 align-self-start">{{ prod.categoria }}</span>
+              <h6 class="card-title fw-bold">{{ prod.nombre }}</h6>
+              <p class="text-primary fw-bold fs-5 mt-auto">S/ {{ prod.precio }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Sección: Ofertas y Promociones -->
+  <section id="ofertas" class="mb-5">
+    <h2 class="text-center mb-4 fw-bold"><i class="bi bi-fire text-danger me-2"></i>Ofertas y Promociones Vigentes</h2>
+    <div class="row g-4">
+      @for (of of ofertas; track $index) {
+        <div class="col-md-6">
+          <div class="card bg-danger text-white border-0 shadow-sm card-hover">
+            <div class="card-body p-4">
+              <h4 class="fw-bold">{{ of.titulo }}</h4>
+              <p class="fs-3 fw-bold text-warning mb-1">{{ of.descuento }}</p>
+              <p class="m-0">{{ of.detalle }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Sección: Formulario Signals y Tabla de Reseñas -->
+  <section id="resenas" class="mb-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-dark text-white text-center py-3">
+        <h4 class="m-0 fw-bold"><i class="bi bi-chat-square-quote-fill me-2"></i>Valoraciones de Clientes</h4>
+      </div>
+      <div class="card-body p-4">
+        <!-- Formulario reactivo -->
+        <form class="row g-3 mb-5" (submit)="guardarResena($event)">
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Cliente</label>
+            <input type="text" class="form-control" [formField]="resenaFormulario.cliente" placeholder="Ej. Ana Gómez">
+            @if (resenaFormulario.cliente().touched() && resenaFormulario.cliente().invalid()) {
+              @for (e of resenaFormulario.cliente().errors(); track $index) {
+                <span class="text-danger small">{{ e.message }}</span>
+              }
+            }
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Producto adquirido</label>
+            <input type="text" class="form-control" [formField]="resenaFormulario.producto" placeholder="Ej. Laptop ASUS ROG">
+            @if (resenaFormulario.producto().touched() && resenaFormulario.producto().invalid()) {
+              @for (e of resenaFormulario.producto().errors(); track $index) {
+                <span class="text-danger small">{{ e.message }}</span>
+              }
+            }
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Puntuación (1 al 5)</label>
+            <input type="number" class="form-control" [formField]="resenaFormulario.calificacion">
+            @if (resenaFormulario.calificacion().touched() && resenaFormulario.calificacion().invalid()) {
+              @for (e of resenaFormulario.calificacion().errors(); track $index) {
+                <span class="text-danger small">{{ e.message }}</span>
+              }
+            }
+          </div>
+
+          <div class="col-12">
+            <label class="form-label fw-bold">Comentario</label>
+            <textarea class="form-control" rows="2" [formField]="resenaFormulario.comentario" placeholder="Escribe tu reseña sobre el producto..."></textarea>
+            @if (resenaFormulario.comentario().touched() && resenaFormulario.comentario().invalid()) {
+              @for (e of resenaFormulario.comentario().errors(); track $index) {
+                <span class="text-danger small">{{ e.message }}</span>
+              }
+            }
+          </div>
+
+          <div class="col-12 text-end">
+            <button class="btn btn-primary px-4" type="submit"
+              [disabled]="resenaFormulario.cliente().invalid() || resenaFormulario.producto().invalid() || resenaFormulario.comentario().invalid() || resenaFormulario.calificacion().invalid()">
+              <i class="bi bi-send-fill me-1"></i> Publicar Reseña
+            </button>
+          </div>
+        </form>
+
+        <!-- Tabla con las reseñas registradas -->
+        <h5 class="fw-bold mb-3"><i class="bi bi-list-stars me-2"></i>Historial de Reseñas</h5>
+        <div class="table-responsive">
+          <table class="table table-hover table-striped align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Puntuación</th>
+                <th>Comentario</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of listaResenas; track $index) {
+                <tr>
+                  <td class="fw-bold">{{ r.cliente }}</td>
+                  <td>{{ r.producto }}</td>
+                  <td><span class="badge bg-warning text-dark"><i class="bi bi-star-fill me-1"></i>{{ r.calificacion }} / 5</span></td>
+                  <td>{{ r.comentario }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+  <p class="m-0 small">TecnoMax © 2026 - Universidad Continental</p>
+</footer>
